@@ -12,13 +12,30 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.0.3",
     "typescript": "4.7.4"
   },
   "private": true,
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "lint": "next lint",
+    "fix": "run-p fix:*",
+    "fix:css": "run-s fix:css:prettier",
+    "fix:css:prettier": "prettier './**/*.css' --write",
+    "fix:js": "run-s fix:js:prettier",
+    "fix:js:prettier": "prettier './**/*.{js,jsx,ts,tsx}' --write",
+    "fix:json": "prettier './**/*.json' --write",
+    "fix:md": "prettier './**/*.md' --write",
+    "lint": "run-p lint:*",
+    "lint:css": "run-p lint:css:*",
+    "lint:css:prettier": "prettier './**/*.css' --check",
+    "lint:js": "run-p lint:js:*",
+    "lint:js:prettier": "prettier './**/*.{js,jsx,ts,tsx}' --check",
+    "lint:js:tsc": "tsc --noEmit",
+    "lint:json": "prettier './**/*.json' --check",
+    "lint:md": "prettier './**/*.md' --check",
     "start": "next start"
   }
 }

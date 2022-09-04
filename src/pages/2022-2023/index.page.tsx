@@ -135,7 +135,7 @@ const View: FC<{
           </div>
         </header>
 
-        <div className="mx-auto w-[100rem] px-4 py-6">
+        <div className="mx-auto w-[100rem] px-4 py-6 text-lg leading-5">
           <div className="mb-2 text-4xl font-bold before:inline-block before:content-['']">
             {preview ? watch("event") : <TextInput {...register("event")} />}
           </div>
@@ -151,7 +151,7 @@ const View: FC<{
             <div>JUDGES DETAILS PER SKATER</div>
           </div>
 
-          <div className="mb-2 grid grid-cols-[4rem_1fr_5rem_5rem_2rem_6rem_6rem_16rem_8rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 font-bold tabular-nums">
+          <div className="mb-2 grid grid-cols-[4rem_1fr_5rem_5rem_2rem_6rem_7rem_16rem_8rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 font-bold tabular-nums">
             <>
               <div className="mb-2 text-end">Rank</div>
               <div className="mb-2">Name</div>
@@ -207,7 +207,7 @@ const View: FC<{
             </>
           </div>
 
-          <div className="mb-2 grid grid-cols-[1.5rem_15rem_2rem_3.5rem_1.5rem_4rem_1rem_repeat(9,_1fr)_8rem_5rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 tabular-nums">
+          <div className="mb-2 grid grid-cols-[1.5rem_14rem_2rem_3.5rem_1.5rem_4rem_repeat(9,_1fr)_8rem_6rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 tabular-nums">
             <>
               <div className="mb-2 text-end font-bold">#</div>
               <div className="mb-2 font-bold">Executed Elements</div>
@@ -219,7 +219,6 @@ const View: FC<{
                 {preview ? "" : "x"}
               </div>
               <div className="mb-2 text-end font-bold">GOE</div>
-              <div></div>
               {JUDGES.map((judge, i) => (
                 <div key={i} className="mb-2 text-end font-bold">
                   {judge}
@@ -271,7 +270,6 @@ const View: FC<{
                             new Decimal(NaN),
                         )}
                       </div>
-                      <div></div>
                       {JUDGES.map((_, j) => (
                         <div key={j} className="text-end">
                           {preview ? (
@@ -318,7 +316,6 @@ const View: FC<{
               <div className="text-end">
                 {decimalToString(calculatedValues.pc.factor)}
               </div>
-              <div></div>
               {JUDGES.map((_, i) => (
                 <div key={i} className="text-end">
                   {preview ? (
@@ -343,7 +340,6 @@ const View: FC<{
               <div className="text-end">
                 {decimalToString(calculatedValues.pc.factor)}
               </div>
-              <div></div>
               {JUDGES.map((_, i) => (
                 <div key={i} className="text-end">
                   {preview ? (
@@ -368,7 +364,6 @@ const View: FC<{
               <div className="text-end">
                 {decimalToString(calculatedValues.pc.factor)}
               </div>
-              <div></div>
               {JUDGES.map((_, i) => (
                 <div key={i} className="text-end">
                   {preview ? (

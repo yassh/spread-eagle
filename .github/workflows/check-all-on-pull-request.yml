@@ -1,0 +1,25 @@
+name: Check all on pull request
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ./.node-version
+
+      - name: Check Node.js version
+        run: node --version
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run checkall
+        run: yarn checkall

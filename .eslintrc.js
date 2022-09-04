@@ -6,4 +6,7 @@ module.exports = {
     "next/core-web-vitals",
     "prettier",
   ],
+  rules: {
+    "react/jsx-key": ["error", { checkFragmentShorthand: true }],
+  },
 }

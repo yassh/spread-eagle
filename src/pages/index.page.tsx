@@ -8,12 +8,15 @@ const Page: NextPage = () => {
       <Head>
         <title>Spread Eagle</title>
       </Head>
-      <h1>Spread Eagle</h1>
-      <ul>
-        <li>
-          <Link href="./2022-2023/single">2022-2023 Single Skating</Link>
-        </li>
-      </ul>
+      <div className="mx-auto max-w-4xl p-4">
+        <h1 className="text-xl">Spread Eagle</h1>
+        <ul className="mt-2">
+          <li>
+            ☞{" "}
+            <Link href="./2022-2023">Figure Skating Score Sheet 2022-2023</Link>
+          </li>
+        </ul>
+      </div>
     </>
   )
 }

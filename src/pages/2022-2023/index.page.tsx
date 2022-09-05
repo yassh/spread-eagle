@@ -2,9 +2,8 @@ import Decimal from "decimal.js"
 import LZString from "lz-string"
 import { NextPage } from "next"
 import Head from "next/head"
-import { useRouter } from "next/router"
-import { FC, Fragment, useCallback, useEffect, useState } from "react"
-import { DeepPartial, useForm } from "react-hook-form"
+import { Fragment, useCallback, useEffect } from "react"
+import { useForm } from "react-hook-form"
 import { Checkbox } from "~/components/Checkbox"
 import { NumberInput } from "~/components/NumberInput"
 import { Select } from "~/components/Select"
@@ -19,64 +18,49 @@ import { SEGMENT_OPTIONS } from "./constants/SEGMENT_OPTIONS"
 import { getCalculatedValues } from "./lib/getCalculatedValues"
 import { FormValues } from "./types/FormValues"
 
-const FORM_VALUES_PARAM_NAME = "d"
 const TITLE = "Figure Skating Score Sheet 2022-2023"
 const JUDGES = ["J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"]
 
 const Page: NextPage = () => {
-  const router = useRouter()
-  const [defaultValues, setDefaultValues] = useState<FormValues | null>(null)
+  const {
+    register: originalRegister,
+    watch,
+    reset,
+    getValues,
+  } = useForm<FormValues>({ defaultValues: DEFAULT_FORM_VALUES })
 
   useEffect(() => {
-    if (!router.isReady) return
+    const handleHashChange = () => {
+      let formValues = {}
 
-    let formValues = {}
-
-    const data = router.query[FORM_VALUES_PARAM_NAME]
-    if (typeof data === "string") {
       try {
-        const maybeJson = LZString.decompressFromEncodedURIComponent(data)
+        const hash = location.hash.substring(1)
+        const maybeJson = LZString.decompressFromEncodedURIComponent(hash)
         if (maybeJson) {
           formValues = JSON.parse(maybeJson)
         }
       } catch (error) {
         console.error(error)
       }
+
+      reset({ ...DEFAULT_FORM_VALUES, ...formValues })
     }
 
-    setDefaultValues({ ...DEFAULT_FORM_VALUES, ...formValues })
-  }, [router.isReady, router.query])
+    handleHashChange()
+    window.addEventListener("hashchange", handleHashChange)
 
-  return (
-    <>
-      <Head>
-        <title>{TITLE}</title>
-      </Head>
-      {defaultValues && <View defaultValues={defaultValues} />}
-    </>
-  )
-}
-
-const View: FC<{
-  defaultValues: DeepPartial<FormValues>
-}> = (props) => {
-  const { defaultValues } = props
-  const {
-    register: originalRegister,
-    watch,
-    getValues,
-  } = useForm<FormValues>({ defaultValues })
-  const router = useRouter()
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange)
+    }
+  }, [reset])
 
   const saveFormValuesInUrl = useCallback(() => {
     const formValues = getValues()
     const formValuesJson = JSON.stringify(formValues)
     const hash = LZString.compressToEncodedURIComponent(formValuesJson)
 
-    router.replace(`?${FORM_VALUES_PARAM_NAME}=${hash}`, undefined, {
-      scroll: false,
-    })
-  }, [getValues, router])
+    location.replace("#" + hash)
+  }, [getValues])
 
   const register = useCallback(
     (...args: Parameters<typeof originalRegister>) =>

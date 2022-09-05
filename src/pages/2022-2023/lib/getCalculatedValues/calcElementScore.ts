@@ -5,7 +5,7 @@ import { getBaseValueOfElement } from "../getBaseValueOfElement"
 import { getGoeOfElement } from "../getGoeOfElement"
 
 export const calcElementScore = (
-  formValues: FormValues,
+  data: FormValues["data"],
 ): {
   elements: Array<{
     baseValue: Decimal
@@ -15,7 +15,7 @@ export const calcElementScore = (
   totalBaseValue: Decimal
   total: Decimal
 } => {
-  const elements = formValues.ee.map((element) => {
+  const elements = data.ee.map((element) => {
     const baseValue = getBaseValueOfElement(element.abbr, element.x)
     const goe = getGoeOfElement(element.abbr, element.js)
 

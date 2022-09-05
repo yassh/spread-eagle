@@ -4,12 +4,12 @@ import { stringsToDecimals } from "~/lib/stringsToDecimals"
 import { FormValues } from "../../types/FormValues"
 
 export const calcDeductions = (
-  formValues: FormValues,
+  data: FormValues["data"],
 ): {
   total: Decimal
 } => {
   const total = calcSumOfDecimals(
-    stringsToDecimals(formValues.deductions.map((deduction) => deduction.p)),
+    stringsToDecimals(data.deductions.map((deduction) => deduction.p)),
   )
 
   return {

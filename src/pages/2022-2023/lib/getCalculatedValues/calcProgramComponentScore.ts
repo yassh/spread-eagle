@@ -7,7 +7,7 @@ import { FormValues } from "../../types/FormValues"
 import { segmentToFactor } from "../segmentToFactor"
 
 export const calcProgramComponentScore = (
-  formValues: FormValues,
+  data: FormValues["data"],
 ): {
   factor: Decimal
   composition: Decimal
@@ -15,7 +15,7 @@ export const calcProgramComponentScore = (
   skatingSkills: Decimal
   total: Decimal
 } => {
-  const factor = segmentToFactor(formValues.segment)
+  const factor = segmentToFactor(data.segment)
 
   // TODO: 2022-2023シーズンの資料からの引用に差し替える
   //
@@ -24,15 +24,13 @@ export const calcProgramComponentScore = (
   //
   // ☞ https://www.isu.org/inside-isu/rules-regulations/isu-statutes-constitution-regulations-technical/special-regulations-and-technical-rules/17927-single-pair-and-ice-dance-2018/file
   const composition = roundTo2DecimalPlaces(
-    calcTrimmedMeanOfDecimals(stringsToDecimals(formValues.pc.composition.js)),
+    calcTrimmedMeanOfDecimals(stringsToDecimals(data.pc.composition.js)),
   )
   const presentation = roundTo2DecimalPlaces(
-    calcTrimmedMeanOfDecimals(stringsToDecimals(formValues.pc.presentation.js)),
+    calcTrimmedMeanOfDecimals(stringsToDecimals(data.pc.presentation.js)),
   )
   const skatingSkills = roundTo2DecimalPlaces(
-    calcTrimmedMeanOfDecimals(
-      stringsToDecimals(formValues.pc.skatingSkills.js),
-    ),
+    calcTrimmedMeanOfDecimals(stringsToDecimals(data.pc.skatingSkills.js)),
   )
 
   // TODO: 2022-2023シーズンの資料からの引用に差し替える

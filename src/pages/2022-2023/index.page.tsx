@@ -1,10 +1,7 @@
 import Decimal from "decimal.js"
-import LZString from "lz-string"
 import { NextPage } from "next"
 import Head from "next/head"
-import { useRouter } from "next/router"
-import { FC, Fragment, useCallback, useEffect, useState } from "react"
-import { DeepPartial, useForm } from "react-hook-form"
+import { Fragment } from "react"
 import { Checkbox } from "~/components/Checkbox"
 import { NumberInput } from "~/components/NumberInput"
 import { Select } from "~/components/Select"
@@ -12,85 +9,17 @@ import { TextInput } from "~/components/TextInput"
 import { decimalToString } from "~/lib/decimalToString"
 import { valueToLabel } from "~/lib/valueToLabel"
 import { DEDUCTION_P_OPTIONS } from "./constants/DEDUCTION_P_OPTIONS"
-import { DEFAULT_FORM_VALUES } from "./constants/DEFAULT_FORM_VALUES"
 import { EE_J_OPTIONS } from "./constants/EE_J_OPTIONS"
 import { PC_J_OPTIONS } from "./constants/PC_J_OPTIONS"
 import { SEGMENT_OPTIONS } from "./constants/SEGMENT_OPTIONS"
+import { useScoreSheetForm } from "./hooks/useScoreSheetForm"
 import { getCalculatedValues } from "./lib/getCalculatedValues"
-import { FormValues } from "./types/FormValues"
 
-const FORM_VALUES_PARAM_NAME = "d"
 const TITLE = "Figure Skating Score Sheet 2022-2023"
 const JUDGES = ["J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"]
 
 const Page: NextPage = () => {
-  const router = useRouter()
-  const [defaultValues, setDefaultValues] = useState<FormValues | null>(null)
-
-  useEffect(() => {
-    if (!router.isReady) return
-
-    let formValues = {}
-
-    const data = router.query[FORM_VALUES_PARAM_NAME]
-    if (typeof data === "string") {
-      try {
-        const maybeJson = LZString.decompressFromEncodedURIComponent(data)
-        if (maybeJson) {
-          formValues = JSON.parse(maybeJson)
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    setDefaultValues({ ...DEFAULT_FORM_VALUES, ...formValues })
-  }, [router.isReady, router.query])
-
-  return (
-    <>
-      <Head>
-        <title>{TITLE}</title>
-      </Head>
-      {defaultValues && <View defaultValues={defaultValues} />}
-    </>
-  )
-}
-
-const View: FC<{
-  defaultValues: DeepPartial<FormValues>
-}> = (props) => {
-  const { defaultValues } = props
-  const {
-    register: originalRegister,
-    watch,
-    getValues,
-  } = useForm<FormValues>({ defaultValues })
-  const router = useRouter()
-
-  const saveFormValuesInUrl = useCallback(() => {
-    const formValues = getValues()
-    const formValuesJson = JSON.stringify(formValues)
-    const hash = LZString.compressToEncodedURIComponent(formValuesJson)
-
-    router.replace(`?${FORM_VALUES_PARAM_NAME}=${hash}`, undefined, {
-      scroll: false,
-    })
-  }, [getValues, router])
-
-  const register = useCallback(
-    (...args: Parameters<typeof originalRegister>) =>
-      originalRegister(args[0], {
-        onChange: () => saveFormValuesInUrl(),
-      }),
-    [originalRegister, saveFormValuesInUrl],
-  )
-
-  const onClickClearButton = useCallback(() => {
-    if (window.confirm("Do you really want to clear?")) {
-      location.replace(location.pathname)
-    }
-  }, [])
+  const { watch, register, clear } = useScoreSheetForm()
 
   const formValues = watch()
   const calculatedValues = getCalculatedValues(formValues)
@@ -120,7 +49,7 @@ const View: FC<{
         <header className="sticky top-0 z-50 bg-slate-100 print:hidden">
           <div className="mx-auto flex w-[100rem] items-center gap-8 p-4">
             <div className="flex-1">{TITLE}</div>
-            <button type="button" onClick={onClickClearButton}>
+            <button type="button" onClick={() => clear()}>
               Clear
             </button>
             <label className="relative inline-flex cursor-pointer items-center">

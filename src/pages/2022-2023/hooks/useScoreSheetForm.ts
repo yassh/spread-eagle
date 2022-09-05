@@ -1,8 +1,11 @@
 import LZString from "lz-string"
+import { useRouter } from "next/router"
 import { useCallback, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { DEFAULT_FORM_VALUES } from "../constants/DEFAULT_FORM_VALUES"
 import { FormValues } from "../types/FormValues"
+
+const PARAM_NAME_FORM = "form"
 
 export const useScoreSheetForm = () => {
   const {
@@ -11,30 +14,17 @@ export const useScoreSheetForm = () => {
     reset,
     register: originalRegister,
   } = useForm<FormValues>({ defaultValues: DEFAULT_FORM_VALUES })
+  const router = useRouter()
 
   const saveFormValuesInUrl = useCallback(() => {
     const formValues = getValues()
     const formValuesJson = JSON.stringify(formValues)
-    const hash = LZString.compressToEncodedURIComponent(formValuesJson)
+    const form = LZString.compressToEncodedURIComponent(formValuesJson)
 
-    location.replace("#" + hash)
-  }, [getValues])
-
-  const restoreFormValuesFromUrl = useCallback(() => {
-    let formValues = {}
-
-    try {
-      const hash = location.hash.substring(1)
-      const maybeJson = LZString.decompressFromEncodedURIComponent(hash)
-      if (maybeJson) {
-        formValues = JSON.parse(maybeJson)
-      }
-    } catch (error) {
-      console.error(error)
-    }
-
-    reset({ ...DEFAULT_FORM_VALUES, ...formValues })
-  }, [reset])
+    router.replace(`?${PARAM_NAME_FORM}=${form}`, undefined, {
+      scroll: false,
+    })
+  }, [getValues, router])
 
   const register = useCallback(
     (...args: Parameters<typeof originalRegister>) =>
@@ -45,17 +35,25 @@ export const useScoreSheetForm = () => {
   )
 
   useEffect(() => {
-    const handleHashChange = () => {
-      restoreFormValuesFromUrl()
+    if (!router.isReady) return
+
+    const form = router.query[PARAM_NAME_FORM]
+    if (typeof form !== "string") return
+
+    let formValues = {}
+    try {
+      const maybeJson = LZString.decompressFromEncodedURIComponent(form)
+      if (maybeJson) {
+        formValues = JSON.parse(maybeJson)
+      }
+    } catch (error) {
+      console.error(error)
     }
 
-    handleHashChange()
-    window.addEventListener("hashchange", handleHashChange)
+    reset({ ...DEFAULT_FORM_VALUES, ...formValues })
 
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange)
-    }
-  }, [restoreFormValuesFromUrl])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady])
 
   const clear = useCallback(() => {
     if (window.confirm("Do you really want to clear?")) {

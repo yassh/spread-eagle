@@ -4,10 +4,10 @@ import { calcDeductions } from "./calcDeductions"
 import { calcElementScore } from "./calcElementScore"
 import { calcProgramComponentScore } from "./calcProgramComponentScore"
 
-export const getCalculatedValues = (formValues: FormValues) => {
-  const ee = calcElementScore(formValues)
-  const pc = calcProgramComponentScore(formValues)
-  const deductions = calcDeductions(formValues)
+export const getCalculatedValues = (data: FormValues["data"]) => {
+  const ee = calcElementScore(data)
+  const pc = calcProgramComponentScore(data)
+  const deductions = calcDeductions(data)
   const total = Decimal.sum(ee.total, pc.total, deductions.total)
 
   return {

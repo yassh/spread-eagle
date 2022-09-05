@@ -1,8 +1,7 @@
 import Decimal from "decimal.js"
 import { FormValues } from "../../../types/FormValues"
 
-export const input: FormValues = {
-  preview: true,
+export const input: FormValues["data"] = {
   event: "ISU JGP Czech Skate 2022",
   segment: "psp",
   rank: "3",

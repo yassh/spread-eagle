@@ -22,7 +22,7 @@ const Page: NextPage = () => {
   const { watch, register, clear } = useScoreSheetForm()
 
   const formValues = watch()
-  const calculatedValues = getCalculatedValues(formValues)
+  const calculatedValues = getCalculatedValues(formValues.data)
 
   if (process.env.NODE_ENV === "development") {
     console.log(JSON.stringify({ formValues, calculatedValues }))
@@ -34,13 +34,13 @@ const Page: NextPage = () => {
     <>
       <Head>
         <title>
-          {watch("name")
-            ? watch("name") +
+          {watch("data.name")
+            ? watch("data.name") +
               " (" +
-              valueToLabel(SEGMENT_OPTIONS, watch("segment")) +
+              valueToLabel(SEGMENT_OPTIONS, watch("data.segment")) +
               ") - "
             : ""}
-          {watch("event") ? watch("event") + " - " : ""}
+          {watch("data.event") ? watch("data.event") + " - " : ""}
           {TITLE}
         </title>
       </Head>
@@ -66,15 +66,22 @@ const Page: NextPage = () => {
 
         <div className="mx-auto w-[100rem] px-4 py-6 text-lg leading-5">
           <div className="mb-2 text-4xl font-bold before:inline-block before:content-['']">
-            {preview ? watch("event") : <TextInput {...register("event")} />}
+            {preview ? (
+              watch("data.event")
+            ) : (
+              <TextInput {...register("data.event")} />
+            )}
           </div>
 
           <div className="mb-6 grid grid-cols-[1fr_2fr] items-baseline gap-x-4 text-3xl font-bold">
             <div>
               {preview ? (
-                valueToLabel(SEGMENT_OPTIONS, watch("segment"))
+                valueToLabel(SEGMENT_OPTIONS, watch("data.segment"))
               ) : (
-                <Select {...register("segment")} options={SEGMENT_OPTIONS} />
+                <Select
+                  {...register("data.segment")}
+                  options={SEGMENT_OPTIONS}
+                />
               )}
             </div>
             <div>JUDGES DETAILS PER SKATER</div>
@@ -98,26 +105,30 @@ const Page: NextPage = () => {
             <>
               <div className="text-end">
                 {preview ? (
-                  watch("rank")
+                  watch("data.rank")
                 ) : (
-                  <NumberInput {...register("rank")} />
+                  <NumberInput {...register("data.rank")} />
                 )}
               </div>
               <div>
-                {preview ? watch("name") : <TextInput {...register("name")} />}
+                {preview ? (
+                  watch("data.name")
+                ) : (
+                  <TextInput {...register("data.name")} />
+                )}
               </div>
               <div>
                 {preview ? (
-                  watch("nation")
+                  watch("data.nation")
                 ) : (
-                  <TextInput {...register("nation")} />
+                  <TextInput {...register("data.nation")} />
                 )}
               </div>
               <div className="text-end">
                 {preview ? (
-                  watch("startingNumber")
+                  watch("data.startingNumber")
                 ) : (
-                  <NumberInput {...register("startingNumber")} />
+                  <NumberInput {...register("data.startingNumber")} />
                 )}
               </div>
               <div></div>
@@ -160,22 +171,22 @@ const Page: NextPage = () => {
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
                 (number, i) =>
-                  !(preview && watch(`ee.${i}.abbr`) === "") && (
+                  !(preview && watch(`data.ee.${i}.abbr`) === "") && (
                     <Fragment key={i}>
                       <div className="text-end">{number}</div>
                       <div>
                         {preview ? (
-                          watch(`ee.${i}.abbr`)
+                          watch(`data.ee.${i}.abbr`)
                         ) : (
-                          <TextInput {...register(`ee.${i}.abbr`)} />
+                          <TextInput {...register(`data.ee.${i}.abbr`)} />
                         )}
                       </div>
                       <div className="text-center">
                         {preview ? (
-                          watch(`ee.${i}.info`)
+                          watch(`data.ee.${i}.info`)
                         ) : (
                           <TextInput
-                            {...register(`ee.${i}.info`)}
+                            {...register(`data.ee.${i}.info`)}
                             className="text-center"
                           />
                         )}
@@ -188,9 +199,9 @@ const Page: NextPage = () => {
                       </div>
                       <div className="text-center">
                         {preview ? (
-                          watch(`ee.${i}.x`) && "x"
+                          watch(`data.ee.${i}.x`) && "x"
                         ) : (
-                          <Checkbox {...register(`ee.${i}.x`)} />
+                          <Checkbox {...register(`data.ee.${i}.x`)} />
                         )}
                       </div>
                       <div className="text-end">
@@ -202,11 +213,11 @@ const Page: NextPage = () => {
                       {JUDGES.map((_, j) => (
                         <div key={j} className="text-end">
                           {preview ? (
-                            watch(`ee.${i}.js.${j}`)
+                            watch(`data.ee.${i}.js.${j}`)
                           ) : (
                             <Select
                               options={EE_J_OPTIONS}
-                              {...register(`ee.${i}.js.${j}`)}
+                              {...register(`data.ee.${i}.js.${j}`)}
                               className="text-end"
                             />
                           )}
@@ -248,11 +259,11 @@ const Page: NextPage = () => {
               {JUDGES.map((_, i) => (
                 <div key={i} className="text-end">
                   {preview ? (
-                    watch(`pc.composition.js.${i}`)
+                    watch(`data.pc.composition.js.${i}`)
                   ) : (
                     <Select
                       options={PC_J_OPTIONS}
-                      {...register(`pc.composition.js.${i}`)}
+                      {...register(`data.pc.composition.js.${i}`)}
                       className="text-end"
                     />
                   )}
@@ -272,11 +283,11 @@ const Page: NextPage = () => {
               {JUDGES.map((_, i) => (
                 <div key={i} className="text-end">
                   {preview ? (
-                    watch(`pc.presentation.js.${i}`)
+                    watch(`data.pc.presentation.js.${i}`)
                   ) : (
                     <Select
                       options={PC_J_OPTIONS}
-                      {...register(`pc.presentation.js.${i}`)}
+                      {...register(`data.pc.presentation.js.${i}`)}
                       className="text-end"
                     />
                   )}
@@ -296,11 +307,11 @@ const Page: NextPage = () => {
               {JUDGES.map((_, i) => (
                 <div key={i} className="text-end">
                   {preview ? (
-                    watch(`pc.skatingSkills.js.${i}`)
+                    watch(`data.pc.skatingSkills.js.${i}`)
                   ) : (
                     <Select
                       options={PC_J_OPTIONS}
-                      {...register(`pc.skatingSkills.js.${i}`)}
+                      {...register(`data.pc.skatingSkills.js.${i}`)}
                       className="text-end"
                     />
                   )}
@@ -329,18 +340,18 @@ const Page: NextPage = () => {
                 <div key={i} className="grid grid-cols-[1fr_5rem] gap-x-4">
                   <div>
                     {preview ? (
-                      watch(`deductions.${i}.t`)
+                      watch(`data.deductions.${i}.t`)
                     ) : (
-                      <TextInput {...register(`deductions.${i}.t`)} />
+                      <TextInput {...register(`data.deductions.${i}.t`)} />
                     )}
                   </div>
                   <div className="text-end">
                     {preview ? (
-                      watch(`deductions.${i}.p`)
+                      watch(`data.deductions.${i}.p`)
                     ) : (
                       <Select
                         options={DEDUCTION_P_OPTIONS}
-                        {...register(`deductions.${i}.p`)}
+                        {...register(`data.deductions.${i}.p`)}
                         className="text-end"
                       />
                     )}

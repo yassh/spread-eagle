@@ -342,11 +342,14 @@ const Page: NextPage = () => {
             </>
           </div>
 
-          <div className="grid grid-cols-[auto_1fr_5rem] gap-x-8 border-2 py-2 pr-4 pl-14 tabular-nums">
+          <div className="grid grid-cols-[auto_1fr_5rem] items-center gap-x-8 border-2 py-2 pr-4 pl-14 tabular-nums">
             <div className="font-bold">Deductions:</div>
-            <div className="grid grid-cols-[repeat(3,_1fr)] gap-x-16">
+            <div className="grid grid-cols-[repeat(3,_1fr)] items-center gap-x-16">
               {[1, 2, 3].map((_, i) => (
-                <div key={i} className="grid grid-cols-[1fr_5rem] gap-x-4">
+                <div
+                  key={i}
+                  className="grid grid-cols-[1fr_5rem] items-center gap-x-4"
+                >
                   <div>
                     {preview ? (
                       watch(`data.deductions.${i}.t`)

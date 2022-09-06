@@ -1,6 +1,6 @@
 import LZString from "lz-string"
 import { useRouter } from "next/router"
-import { useCallback, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { DEFAULT_FORM_VALUES } from "../constants/DEFAULT_FORM_VALUES"
 import { FormValues } from "../types/FormValues"
@@ -8,12 +8,15 @@ import { FormValues } from "../types/FormValues"
 const PARAM_NAME_FORM = "form"
 
 export const useScoreSheetForm = () => {
+  const [isReady, setIsReady] = useState(false)
+
   const {
     watch,
     getValues,
     reset,
     register: originalRegister,
-  } = useForm<FormValues>({ defaultValues: DEFAULT_FORM_VALUES })
+  } = useForm<FormValues>()
+
   const router = useRouter()
 
   const saveFormValuesInUrl = useCallback(() => {
@@ -34,26 +37,31 @@ export const useScoreSheetForm = () => {
     [originalRegister, saveFormValuesInUrl],
   )
 
-  useEffect(() => {
-    if (!router.isReady) return
+  useEffect(
+    () => {
+      if (!router.isReady) return
 
-    const form = router.query[PARAM_NAME_FORM]
-    if (typeof form !== "string") return
+      let formValues = {}
 
-    let formValues = {}
-    try {
-      const maybeJson = LZString.decompressFromEncodedURIComponent(form)
-      if (maybeJson) {
-        formValues = JSON.parse(maybeJson)
+      const form = router.query[PARAM_NAME_FORM]
+      if (typeof form === "string") {
+        try {
+          const maybeJson = LZString.decompressFromEncodedURIComponent(form)
+          if (maybeJson) {
+            formValues = JSON.parse(maybeJson)
+          }
+        } catch (error) {
+          console.error(error)
+        }
       }
-    } catch (error) {
-      console.error(error)
-    }
 
-    reset({ ...DEFAULT_FORM_VALUES, ...formValues })
+      reset({ ...DEFAULT_FORM_VALUES, ...formValues })
+      setIsReady(true)
+    },
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.isReady])
+    [router.isReady],
+  )
 
   const clear = useCallback(() => {
     if (window.confirm("Do you really want to clear?")) {
@@ -61,5 +69,5 @@ export const useScoreSheetForm = () => {
     }
   }, [])
 
-  return { watch, register, clear }
+  return { isReady, watch, register, clear }
 }

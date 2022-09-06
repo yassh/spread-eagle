@@ -19,16 +19,23 @@ const TITLE = "Figure Skating Score Sheet 2022-2023"
 const JUDGES = ["J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"]
 
 const Page: NextPage = () => {
-  const { watch, register, clear } = useScoreSheetForm()
+  const { isReady, watch, register, clear } = useScoreSheetForm()
+
+  if (!isReady) {
+    return (
+      <Head>
+        <title>{TITLE}</title>
+      </Head>
+    )
+  }
 
   const formValues = watch()
+  const preview = formValues.preview
   const calculatedValues = getCalculatedValues(formValues.data)
 
   if (process.env.NODE_ENV === "development") {
     console.log(JSON.stringify({ formValues, calculatedValues }))
   }
-
-  const preview = formValues.preview
 
   return (
     <>
@@ -52,6 +59,8 @@ const Page: NextPage = () => {
             <button type="button" onClick={() => clear()}>
               Clear
             </button>
+
+            {/* https://flowbite.com/docs/forms/toggle/ */}
             <label className="relative inline-flex cursor-pointer items-center">
               <input
                 type="checkbox"

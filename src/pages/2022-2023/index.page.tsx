@@ -1,3 +1,5 @@
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Decimal from "decimal.js"
 import { NextPage } from "next"
 import Head from "next/head"
@@ -375,6 +377,23 @@ const Page: NextPage = () => {
             </div>
           </div>
         </div>
+
+        <footer className="flex items-center justify-center gap-6 pb-8 print:hidden">
+          <a
+            href="https://twitter.com/yassh_skate"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FontAwesomeIcon icon={faTwitter} /> Twitter
+          </a>
+          <a
+            href="https://github.com/yassh/spread-eagle"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FontAwesomeIcon icon={faGithub} /> GitHub
+          </a>
+        </footer>
       </div>
     </>
   )

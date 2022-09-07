@@ -23,3 +23,8 @@ Run `yarn dev` to start the development server on localhost:3000.
 - `yarn fix` - to fix problems
 - `yarn test` - to test
 - `yarn checkall` - to run `yarn lint` and `yarn test`
+
+## How to track page views in Google Analytics (GA4)
+
+1. Set the Google Analytics measurement ID to the environment variable `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+1. Disable the "Page changes based on browser history events" option in the Google Analytics console.

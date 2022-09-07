@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app"
-import { GoogleAnalytics } from "nextjs-google-analytics"
+import { GoogleAnalytics } from "~/components/GoogleAnalytics"
 import "~/styles/globals.css"
 
 // ☞ https://fontawesome.com/docs/web/use-with/react/use-with#getting-font-awesome-css-to-work
@@ -10,7 +10,7 @@ config.autoAddCss = false
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GoogleAnalytics trackPageViews />
+      <GoogleAnalytics />
       <Component {...pageProps} />
     </>
   )

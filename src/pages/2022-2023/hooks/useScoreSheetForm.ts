@@ -25,7 +25,7 @@ export const useScoreSheetForm = () => {
     const form = LZString.compressToEncodedURIComponent(formValuesJson)
 
     router.replace(`?${PARAM_NAME_FORM}=${form}`, undefined, {
-      scroll: false,
+      shallow: true, // ☞ https://nextjs.org/docs/routing/shallow-routing
     })
   }, [getValues, router])
 

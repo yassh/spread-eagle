@@ -15,7 +15,7 @@ import { SEGMENT_OPTIONS } from "./constants/SEGMENT_OPTIONS"
 import { useScoreSheetForm } from "./hooks/useScoreSheetForm"
 import { getCalculatedValues } from "./lib/getCalculatedValues"
 
-const TITLE = "Figure Skating Score Sheet 2022-2023"
+const MAIN_TITLE = "Figure Skating Score Sheet 2022-2023"
 const JUDGES = ["J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"]
 
 const Page: NextPage = () => {
@@ -24,12 +24,20 @@ const Page: NextPage = () => {
   if (!isReady) {
     return (
       <Head>
-        <title>{TITLE}</title>
+        <title>{MAIN_TITLE}</title>
       </Head>
     )
   }
 
   const formValues = watch()
+  const title =
+    (formValues.data.name &&
+      formValues.data.name +
+        " (" +
+        valueToLabel(SEGMENT_OPTIONS, formValues.data.segment) +
+        ") - ") +
+    (formValues.data.event && formValues.data.event + " - ") +
+    MAIN_TITLE
   const preview = formValues.preview
   const calculatedValues = getCalculatedValues(formValues.data)
 
@@ -40,22 +48,13 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>
-          {watch("data.name")
-            ? watch("data.name") +
-              " (" +
-              valueToLabel(SEGMENT_OPTIONS, watch("data.segment")) +
-              ") - "
-            : ""}
-          {watch("data.event") ? watch("data.event") + " - " : ""}
-          {TITLE}
-        </title>
+        <title>{title}</title>
       </Head>
 
       <div className="min-w-[100rem]">
         <header className="sticky top-0 z-50 bg-slate-100 print:hidden">
           <div className="mx-auto flex w-[100rem] items-center gap-8 p-4">
-            <div className="flex-1">{TITLE}</div>
+            <div className="flex-1">{MAIN_TITLE}</div>
             <button type="button" onClick={() => clear()}>
               Clear
             </button>

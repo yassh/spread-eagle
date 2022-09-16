@@ -157,7 +157,7 @@ const Page: NextPage = () => {
             </>
           </div>
 
-          <div className="mb-2 grid grid-cols-[1.5rem_14rem_2rem_3.5rem_1.5rem_4rem_repeat(9,_1fr)_8rem_6rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 tabular-nums">
+          <div className="mb-2 grid grid-cols-[2rem_12.5rem_2rem_4.5rem_1.5rem_4rem_repeat(9,_1fr)_8rem_6rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 tabular-nums">
             <>
               <div className="mb-2 text-end font-bold">#</div>
               <div className="mb-2 font-bold">Executed Elements</div>
@@ -343,7 +343,7 @@ const Page: NextPage = () => {
             </>
           </div>
 
-          <div className="grid grid-cols-[auto_1fr_5rem] items-center gap-x-8 border-2 py-2 pr-4 pl-14 tabular-nums">
+          <div className="grid grid-cols-[auto_1fr_5rem] items-center gap-x-8 border-2 py-2 pr-4 pl-16 tabular-nums">
             <div className="font-bold">Deductions:</div>
             <div className="grid grid-cols-[repeat(3,_1fr)] items-center gap-x-16">
               {[1, 2, 3].map((_, i) => (

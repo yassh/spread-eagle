@@ -188,7 +188,28 @@ const Page: NextPage = () => {
                         {preview ? (
                           watch(`data.ee.${i}.abbr`)
                         ) : (
-                          <TextInput {...register(`data.ee.${i}.abbr`)} />
+                          <TextInput
+                            {...register(`data.ee.${i}.abbr`)}
+                            id={`ee-${number}-abbr`}
+                            onKeyDown={(event) => {
+                              switch (event.key) {
+                                case "ArrowUp":
+                                  document
+                                    .querySelector<HTMLInputElement>(
+                                      `#ee-${number - 1}-abbr`,
+                                    )
+                                    ?.focus()
+                                  break
+                                case "ArrowDown":
+                                  document
+                                    .querySelector<HTMLInputElement>(
+                                      `#ee-${number + 1}-abbr`,
+                                    )
+                                    ?.focus()
+                                  break
+                              }
+                            }}
+                          />
                         )}
                       </div>
                       <div className="text-center">
@@ -197,6 +218,25 @@ const Page: NextPage = () => {
                         ) : (
                           <TextInput
                             {...register(`data.ee.${i}.info`)}
+                            id={`ee-${number}-info`}
+                            onKeyDown={(event) => {
+                              switch (event.key) {
+                                case "ArrowUp":
+                                  document
+                                    .querySelector<HTMLInputElement>(
+                                      `#ee-${number - 1}-info`,
+                                    )
+                                    ?.focus()
+                                  break
+                                case "ArrowDown":
+                                  document
+                                    .querySelector<HTMLInputElement>(
+                                      `#ee-${number + 1}-info`,
+                                    )
+                                    ?.focus()
+                                  break
+                              }
+                            }}
                             className="text-center"
                           />
                         )}

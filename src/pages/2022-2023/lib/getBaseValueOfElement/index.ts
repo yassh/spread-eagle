@@ -22,13 +22,12 @@ const getBaseValue = (abbr: string): Decimal => {
 
 const getBaseValueOfJumpElement = (abbr: string, x: boolean): Decimal => {
   const baseValue = abbr.split("+").reduce((acc, abbrJump) => {
-    // TODO: 2022-2023シーズンの資料からの引用に差し替える
-    //
+    // > ...
     // > If both executions are as solo jumps, the second of these solo jumps will
     // > be attributed 70% of its numerical value according to the Scale of Value.
     // > ...
     //
-    // ☞ https://www.isu.org/inside-isu/rules-regulations/isu-statutes-constitution-regulations-technical/special-regulations-and-technical-rules/17927-single-pair-and-ice-dance-2018/file
+    // ☞ https://isu.org/figure-skating/rules/fsk-regulations-rules/file
     if (abbrJump === "REP") {
       return acc.times("0.7")
     }
@@ -44,8 +43,6 @@ const getBaseValueOfJumpElement = (abbr: string, x: boolean): Decimal => {
     return acc.plus(getBaseValue(abbrJump))
   }, new Decimal(0))
 
-  // TODO: 2022-2023シーズンの資料からの引用に差し替える
-  //
   // > In the Short Program and Free Skating of Single Skating the
   // > Base Values (but not the GOEs) for jump Elements started in
   // > the second half of the program will be multiplied by a special
@@ -58,11 +55,12 @@ const getBaseValueOfJumpElement = (abbr: string, x: boolean): Decimal => {
   // > rounded to two decimal places. The second half commences
   // > in the middle of the required time without taking into account
   // > plus or minus 10 seconds allowance. However, in cases of up
-  // > to 3 minutes interruptions (Rule 515) the factor 1.1 will be
-  // > used only for jump elements which were started in the second
-  // > half of the program, but prior to the interruption.
+  // > to 3 minutes interruptions (as per Rule 515, paragraph 4.b))
+  // > the factor 1.1 will be used only for jump elements which were
+  // > started in the second half of the program, but prior to the
+  // > interruption.
   //
-  // ☞ https://www.isu.org/inside-isu/rules-regulations/isu-statutes-constitution-regulations-technical/special-regulations-and-technical-rules/17927-single-pair-and-ice-dance-2018/file
+  // ☞ https://isu.org/figure-skating/rules/fsk-regulations-rules/file
   return roundTo2DecimalPlaces(x ? baseValue.times("1.1") : baseValue)
 }
 

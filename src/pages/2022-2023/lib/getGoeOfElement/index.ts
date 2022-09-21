@@ -15,22 +15,20 @@ const getGoe = (abbr: string, js: Array<string>): Decimal => {
     return new Decimal(NaN)
   }
 
-  // TODO: 2022-2023シーズンの資料からの引用に差し替える
-  //
-  // > The panel's Grade of Execution (GOE) is determined by
+  // > c) The panel's Grade of Execution (GOE) is determined by
   // > calculating the trimmed mean of the numerical values of the
   // > Grades of Execution awarded by Judges.
   // >
-  // > The trimmed mean is calculated by deleting the highest and the
+  // > d) The trimmed mean is calculated by deleting the highest and the
   // > lowest values and calculating the average of the remaining
   // > values. In the case when there are fewer than five Judges, the
   // > highest and lowest values are not deleted from the calculation.
   // >
-  // > This average will become the final Grade of Execution of an
+  // > e) This average will become the final Grade of Execution of an
   // > individual Section/Element. The panel's GOE is rounded to two
   // > decimal places.
   //
-  // ☞ https://www.isu.org/inside-isu/rules-regulations/isu-statutes-constitution-regulations-technical/special-regulations-and-technical-rules/17927-single-pair-and-ice-dance-2018/file
+  // ☞ https://isu.org/figure-skating/rules/fsk-regulations-rules/file
   return calcTrimmedMeanOfDecimals(
     stringsToDecimals(
       js.map((j) =>
@@ -54,13 +52,12 @@ const getGoe = (abbr: string, js: Array<string>): Decimal => {
 }
 
 const getGoeOfJumpElement = (abbr: string, js: Array<string>): Decimal => {
-  // TODO: 2022-2023シーズンの資料からの引用に差し替える
+  // > Jump combinations and Jump Sequences are evaluated as
+  // > one unit by adding the Base Values of the jumps included and
+  // > applying the GOE with the numerical value of the most difficult
+  // > jump.
   //
-  // > Jump combinations are evaluated as one unit by adding the
-  // > Base Values of the jumps included and applying the GOE with
-  // > the numerical value of the most difficult jump.
-  //
-  // ☞ https://www.isu.org/inside-isu/rules-regulations/isu-statutes-constitution-regulations-technical/special-regulations-and-technical-rules/17927-single-pair-and-ice-dance-2018/file
+  // ☞ https://isu.org/figure-skating/rules/fsk-regulations-rules/file
   const abbrMostDifficultJump = abbr.split("+").reduce((acc, abbrJump) => {
     const values = SOV[abbrJump]
     if (!values) {

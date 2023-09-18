@@ -68,7 +68,7 @@ const Page: NextPage = () => {
                 {...register("preview")}
                 className="peer sr-only"
               />
-              <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[0.125rem] after:left-[0.125rem] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300"></div>
+              <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[0.125rem] after:top-[0.125rem] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300"></div>
               <span className="ml-3 text-sm font-medium">Preview</span>
             </label>
           </div>
@@ -97,7 +97,7 @@ const Page: NextPage = () => {
             <div>JUDGES DETAILS PER SKATER</div>
           </div>
 
-          <div className="mb-2 grid grid-cols-[4rem_1fr_5rem_5rem_2rem_6rem_7rem_16rem_8rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 font-bold tabular-nums">
+          <div className="mb-2 grid grid-cols-[4rem_1fr_5rem_5rem_2rem_6rem_7rem_16rem_8rem] items-center gap-x-4 gap-y-1 border-2 px-4 py-2 font-bold tabular-nums">
             <>
               <div className="mb-2 text-end">Rank</div>
               <div className="mb-2">Name</div>
@@ -157,7 +157,7 @@ const Page: NextPage = () => {
             </>
           </div>
 
-          <div className="mb-2 grid grid-cols-[2rem_12.5rem_2rem_4.5rem_1.5rem_4rem_repeat(9,_1fr)_8rem_6rem] items-center gap-x-4 gap-y-1 border-2 py-2 px-4 tabular-nums">
+          <div className="mb-2 grid grid-cols-[2rem_12.5rem_2rem_4.5rem_1.5rem_4rem_repeat(9,_1fr)_8rem_6rem] items-center gap-x-4 gap-y-1 border-2 px-4 py-2 tabular-nums">
             <>
               <div className="mb-2 text-end font-bold">#</div>
               <div className="mb-2 font-bold">Executed Elements</div>
@@ -383,7 +383,7 @@ const Page: NextPage = () => {
             </>
           </div>
 
-          <div className="grid grid-cols-[auto_1fr_5rem] items-center gap-x-8 border-2 py-2 pr-4 pl-16 tabular-nums">
+          <div className="grid grid-cols-[auto_1fr_5rem] items-center gap-x-8 border-2 py-2 pl-16 pr-4 tabular-nums">
             <div className="font-bold">Deductions:</div>
             <div className="grid grid-cols-[repeat(3,_1fr)] items-center gap-x-16">
               {[1, 2, 3].map((_, i) => (

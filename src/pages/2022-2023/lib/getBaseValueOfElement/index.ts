@@ -1,6 +1,7 @@
 import Decimal from "decimal.js"
 import { roundTo2DecimalPlaces } from "~/lib/roundTo2DecimalPlaces"
 import { SOV } from "../../constants/SOV"
+import { isCombinationLift } from "../isCombinationLift"
 import { isJumpElement } from "../isJumpElement"
 import { isOneFootTurnsSequence } from "../isOneFootTurnsSequence"
 import { isPatternDanceElement } from "../isPatternDanceElement"
@@ -69,6 +70,11 @@ const getBaseValueOfPatternDanceElement = (abbr: string): Decimal => {
   return getBaseValue(abbrPatternDanceElement)
 }
 
+const getBaseValueOfCombinationLift = (abbr: string): Decimal => {
+  const [abbrShortLift1, abbrShortLift2] = abbr.split("+") as [string, string]
+  return Decimal.sum(getBaseValue(abbrShortLift1), getBaseValue(abbrShortLift2))
+}
+
 const getBaseValueOfSetOfTwizzles = (abbr: string): Decimal => {
   const [abbrWoman, abbrMan] = abbr.split("+") as [string, string]
   return Decimal.sum(getBaseValue(abbrWoman), getBaseValue(abbrMan))
@@ -91,6 +97,10 @@ export const getBaseValueOfElement = (abbr: string, x: boolean): Decimal => {
 
   if (isPatternDanceElement(abbr)) {
     return getBaseValueOfPatternDanceElement(abbr)
+  }
+
+  if (isCombinationLift(abbr)) {
+    return getBaseValueOfCombinationLift(abbr)
   }
 
   if (isSetOfTwizzles(abbr)) {

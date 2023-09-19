@@ -3,6 +3,7 @@ import { calcTrimmedMeanOfDecimals } from "~/lib/calcTrimmedMeanOfDecimals"
 import { roundTo2DecimalPlaces } from "~/lib/roundTo2DecimalPlaces"
 import { stringsToDecimals } from "~/lib/stringsToDecimals"
 import { SOV } from "../../constants/SOV"
+import { isCombinationLift } from "../isCombinationLift"
 import { isJumpElement } from "../isJumpElement"
 import { isOneFootTurnsSequence } from "../isOneFootTurnsSequence"
 import { isPatternDanceElement } from "../isPatternDanceElement"
@@ -85,6 +86,11 @@ const getGoeOfPatternDanceElement = (
   return getGoe(abbrPatternDanceElement, js)
 }
 
+const getGoeOfCombinationLift = (abbr: string, js: Array<string>): Decimal => {
+  const [abbrShortLift1, abbrShortLift2] = abbr.split("+") as [string, string]
+  return Decimal.sum(getGoe(abbrShortLift1, js), getGoe(abbrShortLift2, js))
+}
+
 const getGoeOfSetOfTwizzles = (abbr: string, js: Array<string>): Decimal => {
   const [abbrWoman, abbrMan] = abbr.split("+") as [string, string]
   return Decimal.sum(getGoe(abbrWoman, js), getGoe(abbrMan, js))
@@ -114,6 +120,10 @@ export const getGoeOfElement = (abbr: string, js: Array<string>): Decimal => {
 
     if (isPatternDanceElement(abbr)) {
       return getGoeOfPatternDanceElement(abbr, js)
+    }
+
+    if (isCombinationLift(abbr)) {
+      return getGoeOfCombinationLift(abbr, js)
     }
 
     if (isSetOfTwizzles(abbr)) {

@@ -17,7 +17,7 @@ import { SEGMENT_OPTIONS } from "./constants/SEGMENT_OPTIONS"
 import { useScoreSheetForm } from "./hooks/useScoreSheetForm"
 import { getCalculatedValues } from "./lib/getCalculatedValues"
 
-const MAIN_TITLE = "Figure Skating Score Sheet 2022-2023"
+const MAIN_TITLE = "Figure Skating Score Sheet 2023-2024"
 const JUDGES = ["J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9"]
 
 const Page: NextPage = () => {

@@ -43,7 +43,7 @@ const Page: NextPage = () => {
           </a>{" "}
           /{" "}
           <a
-            href="https://www.isu.org/inside-isu/isu-communications/communications/28329-isu-communication-2473/file"
+            href="https://www.isu.org/inside-isu/isu-communications/communications/31294-isu-communication-2564/file"
             target="_blank"
             rel="noreferrer"
             className="underline"

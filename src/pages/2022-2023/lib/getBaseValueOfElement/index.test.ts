@@ -21,6 +21,10 @@ test.each([
   { input: { abbr: "1AT2+kpNTYY", x: false }, output: new Decimal("4.00") },
   { input: { abbr: "2AT2+kpNYNY", x: false }, output: new Decimal("4.00") },
 
+  // Combination Lift
+  { input: { abbr: "SlLi3+RoLi4", x: false }, output: new Decimal("10.15") },
+  { input: { abbr: "RoLi4+StaLi4", x: false }, output: new Decimal("10.90") },
+
   // Set of Sequential Twizzles (Rhythm Dance)
   { input: { abbr: "SqTwW4+SqTwM2", x: false }, output: new Decimal("6.59") },
 

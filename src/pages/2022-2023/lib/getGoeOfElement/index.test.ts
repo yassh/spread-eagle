@@ -77,6 +77,15 @@ test.each([
     output: new Decimal("0.63"),
   },
 
+  // Combination Lift
+  {
+    input: {
+      abbr: "SlLi3+RoLi4",
+      js: ["3", "4", "4", "3", "3", "4", "3", "3", "4"],
+    },
+    output: new Decimal("3.29"),
+  },
+
   // Set of Sequential Twizzles (Rhythm Dance)
   {
     input: {

@@ -4,6 +4,7 @@ import { input as input3, output as output3 } from "./003"
 import { input as input4, output as output4 } from "./004"
 import { input as input5, output as output5 } from "./005"
 import { input as input6, output as output6 } from "./006"
+import { input as input7, output as output7 } from "./007"
 
 export const testCases = [
   { input: input1, output: output1 },
@@ -12,4 +13,5 @@ export const testCases = [
   { input: input4, output: output4 },
   { input: input5, output: output5 },
   { input: input6, output: output6 },
+  { input: input7, output: output7 },
 ]

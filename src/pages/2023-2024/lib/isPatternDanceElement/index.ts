@@ -2,16 +2,16 @@ import { escapeRegex } from "~/lib/escapeRegex"
 
 // ☞ https://www.isu.org/inside-isu/isu-communications/communications/31294-isu-communication-2564/file
 const ABBRS = [
-  "1ATB",
-  "1AT1",
-  "1AT2",
-  "1AT3",
-  "1AT4",
-  "2ATB",
-  "2AT1",
-  "2AT2",
-  "2AT3",
-  "2AT4",
+  "1RFB",
+  "1RF1",
+  "1RF2",
+  "1RF3",
+  "1RF4",
+  "2RFB",
+  "2RF1",
+  "2RF2",
+  "2RF3",
+  "2RF4",
 ]
 
 const PATTERN_PATTERN_DANCE_ELEMENT =

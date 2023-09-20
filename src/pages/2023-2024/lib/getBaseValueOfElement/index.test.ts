@@ -18,8 +18,8 @@ test.each([
   { input: { abbr: "3Lz*+1Eu+3S", x: true }, output: new Decimal("5.28") },
 
   // Pattern Dance Element (Junior)
-  { input: { abbr: "1AT2+kpNTYY", x: false }, output: new Decimal("4.00") },
-  { input: { abbr: "2AT2+kpNYNY", x: false }, output: new Decimal("4.00") },
+  { input: { abbr: "1RF4+kpYYYY", x: false }, output: new Decimal("5.50") },
+  { input: { abbr: "2RF3+kpYYNY", x: false }, output: new Decimal("4.75") },
 
   // Combination Lift
   { input: { abbr: "SlLi3+RoLi4", x: false }, output: new Decimal("10.15") },

@@ -6,8 +6,8 @@ test.each([
   { input: "2A", output: false },
 
   // true
-  { input: "1AT2+kpNTYY", output: true },
-  { input: "2AT2+kpNYNY", output: true },
+  { input: "1RF4+kpYYYY", output: true },
+  { input: "2RF3+kpYYNY", output: true },
 ])(`${isPatternDanceElement.name}($input) => $output`, ({ input, output }) => {
   assert.deepStrictEqual(isPatternDanceElement(input), output)
 })

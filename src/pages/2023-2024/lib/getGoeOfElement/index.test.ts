@@ -64,17 +64,17 @@ test.each([
   // Pattern Dance Element (Junior)
   {
     input: {
-      abbr: "1AT2+kpNTYY",
-      js: ["1", "2", "2", "2", "1", "1", "1"],
+      abbr: "1RF4+kpYYYY",
+      js: ["2", "2", "2", "2", "3", "2", "3", "1", "2"],
     },
-    output: new Decimal("0.74"),
+    output: new Decimal("1.13"),
   },
   {
     input: {
-      abbr: "2AT2+kpNYNY",
-      js: ["1", "2", "1", "1", "1", "2", "0"],
+      abbr: "2RF3+kpYYNY",
+      js: ["1", "2", "1", "1", "2", "2", "3", "1", "1"],
     },
-    output: new Decimal("0.63"),
+    output: new Decimal("0.75"),
   },
 
   // Combination Lift

@@ -15,6 +15,10 @@ const Page: NextPage = () => {
             ☞{" "}
             <Link href="./2022-2023">Figure Skating Score Sheet 2022-2023</Link>
           </li>
+          <li>
+            ☞{" "}
+            <Link href="./2023-2024">Figure Skating Score Sheet 2023-2024</Link>
+          </li>
         </ul>
       </div>
     </>

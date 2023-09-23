@@ -1,6 +1,7 @@
 # Spread Eagle
 
 ☞ [Figure Skating Score Sheet 2022-2023](https://spread-eagle.vercel.app/2022-2023)
+☞ [Figure Skating Score Sheet 2023-2024](https://spread-eagle.vercel.app/2023-2024)
 
 ## How to develop
 

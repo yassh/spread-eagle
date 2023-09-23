@@ -1,12 +1,9 @@
-import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { faHouse } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Decimal from "decimal.js"
 import { NextPage } from "next"
 import Head from "next/head"
-import Link from "next/link"
 import { Fragment } from "react"
 import { Checkbox } from "~/components/Checkbox"
+import { Footer } from "~/components/Footer"
 import { NumberInput } from "~/components/NumberInput"
 import { Select } from "~/components/Select"
 import { TextInput } from "~/components/TextInput"
@@ -420,25 +417,7 @@ const Page: NextPage = () => {
           </div>
         </div>
 
-        <footer className="flex items-center justify-center gap-6 pb-8 print:hidden">
-          <Link href="/">
-            <FontAwesomeIcon icon={faHouse} /> Home
-          </Link>
-          <a
-            href="https://twitter.com/yassh_skate"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FontAwesomeIcon icon={faTwitter} /> Twitter
-          </a>
-          <a
-            href="https://github.com/yassh/spread-eagle"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FontAwesomeIcon icon={faGithub} /> GitHub
-          </a>
-        </footer>
+        <Footer />
       </div>
     </>
   )

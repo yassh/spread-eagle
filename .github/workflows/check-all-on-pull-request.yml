@@ -19,7 +19,7 @@ jobs:
         run: node --version
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm ci
 
       - name: Run checkall
-        run: yarn checkall
+        run: npm run checkall

@@ -8,22 +8,21 @@
 ### Requires
 
 - [Node.js](https://nodejs.org/) (version ☞ [.node-version](.node-version))
-- [Yarn](https://yarnpkg.com/)
 
 ### Installation
 
-Run `yarn install` to install dependencies.
+Run `npm ci` to install dependencies.
 
 ### Start
 
-Run `yarn dev` to start the development server on localhost:3000.
+Run `npm run dev` to start the development server on localhost:3000.
 
 ### Other commands
 
-- `yarn lint` - to find problems
-- `yarn fix` - to fix problems
-- `yarn test` - to test
-- `yarn checkall` - to run `yarn lint` and `yarn test`
+- `npm run lint` - to find problems
+- `npm run fix` - to fix problems
+- `npm run test` - to test
+- `npm run checkall` - to run `npm run lint` and `npm run test`
 
 ## How to track page views in Google Analytics (GA4)
 

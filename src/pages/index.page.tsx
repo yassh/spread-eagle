@@ -13,11 +13,11 @@ const Page: NextPage = () => {
         <ul className="mt-2">
           <li>
             ☞{" "}
-            <Link href="./2022-2023">Figure Skating Score Sheet 2022-2023</Link>
+            <Link href="./2023-2024">Figure Skating Score Sheet 2023-2024</Link>
           </li>
           <li>
             ☞{" "}
-            <Link href="./2023-2024">Figure Skating Score Sheet 2023-2024</Link>
+            <Link href="./2022-2023">Figure Skating Score Sheet 2022-2023</Link>
           </li>
         </ul>
       </div>

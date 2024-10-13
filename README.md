@@ -1,5 +1,6 @@
 # Spread Eagle
 
+- [Figure Skating Score Sheet 2024-2025](https://spread-eagle.vercel.app/2024-2025)
 - [Figure Skating Score Sheet 2023-2024](https://spread-eagle.vercel.app/2023-2024)
 - [Figure Skating Score Sheet 2022-2023](https://spread-eagle.vercel.app/2022-2023)
 

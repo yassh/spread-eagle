@@ -64,15 +64,15 @@ test.each([
   // Pattern Dance Element (Junior)
   {
     input: {
-      abbr: "1RF4+kpYYYY",
-      js: ["2", "2", "2", "2", "3", "2", "3", "1", "2"],
+      abbr: "1PD3+kpNYYY",
+      js: ["2", "2", "1", "2", "2", "2", "2", "2", "2"],
     },
-    output: new Decimal("1.13"),
+    output: new Decimal("1.05"),
   },
   {
     input: {
-      abbr: "2RF3+kpYYNY",
-      js: ["1", "2", "1", "1", "2", "2", "3", "1", "1"],
+      abbr: "2PD1+kpTNYY<",
+      js: ["2", "1", "0", "2", "2", "2", "1", "1", "1"],
     },
     output: new Decimal("0.75"),
   },

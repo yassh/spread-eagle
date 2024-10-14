@@ -14,8 +14,8 @@ export const SOV: Record<
     "5": string
   }
 > = {
-  // SINGLE & PAIR SKATING Scale of Values season 2022/23
-  // ☞ https://www.isu.org/inside-isu/isu-communications/communications/28337-isu-communication-2475/file
+  // SINGLE & PAIR SKATING Scale of Values valid as of July 1, 2024
+  // ☞ https://www.isu.org/inside-isu/isu-communications/communications/34028-isu-communication-2656-1/file
 
   // Single & Pair Skating
   // ==========
@@ -624,8 +624,8 @@ export const SOV: Record<
   PCoSp3V: { "-5": "-1.50", "-4": "-1.20", "-3": "-0.90", "-2": "-0.60", "-1": "-0.30", base: "3.00", "1": "0.30", "2": "0.60", "3": "0.90", "4": "1.20", "5": "1.50" },
   PCoSp4V: { "-5": "-1.69", "-4": "-1.35", "-3": "-1.01", "-2": "-0.68", "-1": "-0.34", base: "3.38", "1": "0.34", "2": "0.68", "3": "1.01", "4": "1.35", "5": "1.69" },
 
-  // ICE DANCE Scale of Values season 2023/24
-  // ☞ https://www.isu.org/inside-isu/isu-communications/communications/31294-isu-communication-2564/file
+  // ICE DANCE Scale of Values valid as of July 1, 2024
+  // ☞ https://www.isu.org/figure-skating/rules/fsk-communications/33990-isu-communication-2647/file
 
   // SCALES OF VALUES FOR RHYTHM DANCE / FREE DANCE REQUIRED ELEMENTS
   // ==========

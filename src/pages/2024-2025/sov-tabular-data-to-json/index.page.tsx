@@ -34,7 +34,7 @@ const Page: NextPage = () => {
         <div>
           SOV tabular data (☞{" "}
           <a
-            href="https://www.isu.org/inside-isu/isu-communications/communications/28337-isu-communication-2475/file"
+            href="https://www.isu.org/inside-isu/isu-communications/communications/34028-isu-communication-2656-1/file"
             target="_blank"
             rel="noreferrer"
             className="underline"
@@ -43,7 +43,7 @@ const Page: NextPage = () => {
           </a>{" "}
           /{" "}
           <a
-            href="https://www.isu.org/inside-isu/isu-communications/communications/31294-isu-communication-2564/file"
+            href="https://www.isu.org/figure-skating/rules/fsk-communications/33990-isu-communication-2647/file"
             target="_blank"
             rel="noreferrer"
             className="underline"

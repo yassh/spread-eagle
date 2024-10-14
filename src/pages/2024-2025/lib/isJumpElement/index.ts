@@ -1,6 +1,6 @@
 import { escapeRegex } from "~/lib/escapeRegex"
 
-// ☞ https://www.isu.org/inside-isu/isu-communications/communications/28337-isu-communication-2475/file
+// ☞ https://www.isu.org/inside-isu/isu-communications/communications/34028-isu-communication-2656-1/file
 const ABBRS = [
   "1T",
   "1S",

@@ -10,6 +10,7 @@ test.each([
   { input: "3Te", output: false },
   { input: "3S!", output: false },
   { input: "3a", output: false },
+  { input: "5A", output: false },
 
   // true
   { input: "1Lo", output: true },
@@ -31,6 +32,9 @@ test.each([
   { input: "3Lz+1T+2Aq+SEQ", output: true },
   { input: "3Fq+COMBO", output: true },
   { input: "3Lz*+1Eu+3S", output: true },
+  { input: "5S", output: true },
+  { input: "5Lze<<", output: true },
+  { input: "5F!q+5Lo+5T", output: true },
 ])(`${isJumpElement.name}($input) => $output`, ({ input, output }) => {
   assert.deepStrictEqual(isJumpElement(input), output)
 })

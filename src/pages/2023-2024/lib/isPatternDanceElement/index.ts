@@ -20,7 +20,8 @@ const PATTERN_PATTERN_DANCE_ELEMENT =
   ABBRS.map((abbr) => escapeRegex(abbr)).join("|") +
   ")" +
   "[+]kp[YNT]{4}" +
-  ")"
+  ")" +
+  "(<|<<|!)?"
 
 const REGEX_PATTERN_DANCE_ELEMENT = new RegExp(
   "^" + PATTERN_PATTERN_DANCE_ELEMENT + "$",
